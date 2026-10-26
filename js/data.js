@@ -27,19 +27,19 @@ const PORTFOLIO_DATA = {
     'Mobile App Engineer',
   ],
   heroDescription:
-    'Dynamic Application Developer & Mobile App Engineer with 3+ years of experience building scalable, performance-optimized applications and games across Android and iOS.',
+    'Dynamic Application Developer & Mobile App Engineer with 4+ years of experience building scalable, performance-optimized applications and games across Android and iOS.',
   heroCTAPrimary: 'Get In Touch',
   heroCTASecondary: 'View My Work',
 
   // ── About Section ──────────────────────────────────────────────
   aboutParagraphs: [
-    "I'm a <strong>Software Engineer</strong> with 3+ years of experience in <strong>React Native</strong>, <strong>Unity</strong>, and <strong>C#</strong>, delivering cross-platform applications and games.",
+    "I'm a <strong>Software Engineer</strong> with 4+ years of experience in <strong>React Native</strong>, <strong>Unity</strong>, and <strong>C#</strong>, delivering cross-platform applications and games.",
     'I focus on building scalable mobile apps, optimizing performance, and creating seamless integrations between React Native and Unity for Android and iOS.',
     'My experience includes feature development, debugging, Firebase and API integrations, and localization systems that improve product accessibility and user engagement.',
     'I enjoy innovation-driven work and collaborative problem-solving in agile teams.',
   ],
   aboutStats: [
-    { value: 3, suffix: '+', label: 'Years Experience' },
+    { value: 4, suffix: '+', label: 'Years Experience' },
     { value: 14, suffix: '+', label: 'Major Projects' },
     { value: 2, suffix: '', label: 'Platforms' },
     { value: 1, suffix: '', label: 'Award Won' },
