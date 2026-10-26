@@ -35,7 +35,8 @@ const PORTFOLIO_DATA = {
   aboutParagraphs: [
     "I'm a <strong>Software Engineer</strong> with 4+ years of experience in <strong>React Native</strong>, <strong>Unity</strong>, and <strong>C#</strong>, delivering cross-platform applications and games.",
     'I focus on building scalable mobile apps, optimizing performance, and creating seamless integrations between React Native and Unity for Android and iOS.',
-    'My experience includes feature development, debugging, Firebase and API integrations, and localization systems that improve product accessibility and user engagement.',
+    'My experience includes feature development, debugging, localization systems that improve product accessibility and user engagement, and integrating <strong>Firebase</strong>, <strong>Unity Ads</strong>, <strong>AdMob</strong> and other APIs.',
+    'I create <strong>AI agents</strong> and run them in parallel, so I can work on multiple tasks and projects at once and complete work faster.',
     'I enjoy innovation-driven work and collaborative problem-solving in agile teams.',
   ],
   aboutStats: [
@@ -229,7 +230,7 @@ const PORTFOLIO_DATA = {
     {
       category: 'Cloud & Platforms',
       icon: 'wrench',
-      items: ['AWS', 'Google Console', 'Firebase'],
+      items: ['AWS', 'Google Console', 'Firebase', 'Unity Ads', 'AdMob'],
     },
     {
       category: 'Project Management & Tools',
@@ -239,7 +240,7 @@ const PORTFOLIO_DATA = {
     {
       category: 'AI Tools',
       icon: 'wrench',
-      items: ['GitHub Copilot', 'Cursor', 'Bezi', 'Google Gemini'],
+      items: ['AI Agents', 'GitHub Copilot', 'Cursor', 'Bezi', 'Google Gemini'],
     },
   ],
 
