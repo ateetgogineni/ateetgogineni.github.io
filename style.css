@@ -487,6 +487,11 @@ img {
   box-shadow: 0 8px 25px rgba(79, 70, 229, 0.15);
 }
 
+/* An odd last tile spans the full row instead of sitting alone */
+.stat-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .stat-number {
   font-size: 2.5rem;
   font-weight: 800;

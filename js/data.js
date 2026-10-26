@@ -43,6 +43,7 @@ const PORTFOLIO_DATA = {
     { value: 8, suffix: '+', label: 'Major Projects' },
     { value: 2, suffix: '', label: 'Platforms' },
     { value: 1, suffix: '', label: 'Award Won' },
+    { value: 50, suffix: '+', label: 'Dashboards Built' },
   ],
 
   // ── Experience Section ─────────────────────────────────────────
@@ -93,6 +94,62 @@ const PORTFOLIO_DATA = {
   // ── Projects Section ───────────────────────────────────────────
   // icon: use any name from the ICONS object below, or 'default'
   projects: [
+    {
+      title: 'Sort Rush: Tile Match',
+      description: 'Published casual puzzle game where players sort picture tiles into matching categories (food, animals, vehicles, sports and more) and clear the board before the tray fills up. Features hidden tiles, escalating levels and four boosters: Shuffle, Hint, Magnet and Undo.',
+      tags: ['Puzzle', 'Casual', 'Boosters', 'Android', 'Google Play'],
+      link: 'https://play.google.com/store/apps/details?id=com.yesgnome.sortrush',
+      linkText: 'View on Play Store',
+      icon: 'layers',
+    },
+    {
+      title: 'Connect Master - Puzzle Match',
+      description: 'Published puzzle game where players swap cartoon characters into groups of four that share a trait such as hair colour, glasses or outfit. Features thousands of levels, themed story episodes, global leaderboards, hint boosters and seasonal events.',
+      tags: ['Puzzle', 'Casual', 'Leaderboards', 'Live Events', 'Android', 'Google Play'],
+      link: 'https://play.google.com/store/apps/details?id=com.yesgnome.connectmatch',
+      linkText: 'View on Play Store',
+      icon: 'users',
+    },
+    {
+      title: 'Upcoming Puzzle Games',
+      description: 'Currently developing three new casual puzzle games for mobile: Category Sort, Hexa Sort and Hexa Tile.',
+      tags: ['In Development', 'Puzzle', 'Casual', 'Mobile'],
+      link: '',
+      linkText: '',
+      icon: 'wrench',
+    },
+    {
+      title: 'UNO Game',
+      description: 'Android UNO for 2 to 10 players with six game modes (Classic, Flip, No Mercy, All Wild, Attack and Dare). Built in Unity with a custom C# rules engine and adaptive bots, plus a dependency-free Node.js WebSocket server for matchmaking and server-run games, with an offline bot mode as fallback.',
+      tags: ['Unity', 'C#', 'Node.js', 'WebSocket', 'Multiplayer', 'Docker', 'Android'],
+      link: '',
+      linkText: '',
+      icon: 'gamepad',
+    },
+    {
+      title: 'Glowmoth',
+      description: 'Original 20-level 2D puzzle game where a moth follows your lamp, but only while it can see the light. Built in Unity with a runtime-generated sprite atlas, synthesised audio, object pooling and no per-frame allocations to hold 60 FPS on phones.',
+      tags: ['Unity', 'C#', '2D Puzzle', 'Object Pooling', 'Procedural Art', 'Android', 'iOS'],
+      link: '',
+      linkText: '',
+      icon: 'play',
+    },
+    {
+      title: 'Home Server',
+      description: 'Self-hosted media setup on Windows and Docker: a Node.js download dashboard driving qBittorrent through its Web API, Jellyfin for streaming, Pi-hole for DNS and a customised Homepage dashboard, all reachable from a phone over Tailscale.',
+      tags: ['Docker', 'Node.js', 'PowerShell', 'Jellyfin', 'Pi-hole', 'Tailscale'],
+      link: '',
+      linkText: '',
+      icon: 'layers',
+    },
+    {
+      title: 'Network Dashboard',
+      description: 'Local network dashboard that runs entirely on a PC: a live internet speed gauge, device discovery with online/offline history, and a lightweight PowerShell server that also serves the page to a phone on the same Wi-Fi.',
+      tags: ['JavaScript', 'PowerShell', 'HTML', 'CSS', 'Networking'],
+      link: '',
+      linkText: '',
+      icon: 'bolt',
+    },
     {
       title: 'Bigg Boss: The Game',
       description: 'Built advanced narrative gameplay with localization, asset bundle handling, and dialogue audio support for immersive Android and iOS experiences.',
