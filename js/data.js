@@ -40,7 +40,7 @@ const PORTFOLIO_DATA = {
   ],
   aboutStats: [
     { value: 3, suffix: '+', label: 'Years Experience' },
-    { value: 8, suffix: '+', label: 'Major Projects' },
+    { value: 14, suffix: '+', label: 'Major Projects' },
     { value: 2, suffix: '', label: 'Platforms' },
     { value: 1, suffix: '', label: 'Award Won' },
     { value: 50, suffix: '+', label: 'Dashboards Built' },
