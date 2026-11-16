@@ -61,7 +61,7 @@
   <header class="nav" id="nav">
     <div class="nav-inner">
       <a href="#top" class="nav-logo" aria-label="Venkata Ateet Gogineni, back to top">
-        <span class="monogram">VA</span><span class="nav-name">Venkata Ateet</span>
+        <span class="monogram">VA</span><span class="nav-name">Venkata Ateet Gogineni</span>
       </a>
       <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
@@ -118,10 +118,14 @@
       </div>
 
       <div class="hero-phones" aria-hidden="true">
-        <!-- Personal projects: Glowmoth (Unity), Ramayanam (web game), WorthIt (PWA) -->
-        <div class="hero-phone hp-left"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/glowmoth-mobile.webp" alt="" width="420" height="748" fetchpriority="high" /></div></div></div>
-        <div class="hero-phone hp-center"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/ramayanam-mobile.webp" alt="" width="420" height="909" fetchpriority="high" /></div><span class="island"></span></div></div>
-        <div class="hero-phone hp-right"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/worthit-mobile.webp" alt="" width="420" height="909" fetchpriority="high" /></div></div></div>
+        <!-- Five splash screens, colours mirrored around the centre:
+             Land Lawyers (dark) · Vedic Pooja Guru (colour) · Equity Research (dark, centre) · Connect Match (colour) · Home Server (dark).
+             data-ring = distance from centre (intro order). -->
+        <div class="hero-phone hp-1" data-ring="2"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/landlawyers-splash.webp" alt="" width="420" height="909" /></div></div></div>
+        <div class="hero-phone hp-2" data-ring="1"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/vedic-splash.webp" alt="" width="420" height="909" fetchpriority="high" /></div></div></div>
+        <div class="hero-phone hp-3" data-ring="0"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/equity-splash.webp" alt="" width="420" height="909" fetchpriority="high" /></div><span class="island"></span></div></div>
+        <div class="hero-phone hp-4" data-ring="1"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/connect-splash.webp" alt="" width="420" height="913" fetchpriority="high" /></div></div></div>
+        <div class="hero-phone hp-5" data-ring="2"><div class="phone"><div class="phone-screen"><img src="assets/img/projects/homeserver-splash.webp" alt="" width="420" height="909" /></div></div></div>
       </div>
 
       <a href="#statement" class="scroll-cue" aria-label="Scroll down"><svg><use href="#i-down"/></svg></a>
@@ -131,7 +135,7 @@
     <section class="statement" id="statement">
       <div class="container">
         <p class="statement-text" data-words>
-          I take ideas from a blank canvas to the <em>store</em>. Game design, art, code and QA, done <em>end to end</em>. At PurpleTalk I work <em>AI-first</em>: I create and run agents with Claude Code, Codex and Antigravity across <em>projects in parallel</em>, while I own design, review and testing.
+          From first sketch to store listing, I build games and apps <em>end to end</em>. I work <em>AI-first</em>, with agents running <em>in parallel</em>, so more gets shipped while I stay in charge of design, review and testing.
         </p>
       </div>
     </section>
@@ -140,7 +144,7 @@
     <section class="stats" aria-label="Highlights">
       <div class="container stats-grid">
         <div class="stat" data-reveal><span class="stat-num"><span data-count="4">4</span>+</span><span class="stat-label">Years building<br/>for mobile</span></div>
-        <div class="stat" data-reveal><span class="stat-num"><span data-count="12">12</span>K+</span><span class="stat-label">Downloads across<br/>my solo games</span></div>
+        <div class="stat" data-reveal><span class="stat-num"><span data-count="12">12</span>K+</span><span class="stat-label">Downloads across<br/>all games</span></div>
         <div class="stat" data-reveal><span class="stat-num"><span data-count="14">14</span>+</span><span class="stat-label">Major projects<br/>delivered</span></div>
         <div class="stat" data-reveal><span class="stat-num"><span data-count="50">50</span>+</span><span class="stat-label">Dashboards<br/>built</span></div>
       </div>
@@ -254,9 +258,10 @@
         </div>
 
         <div class="bento">
-          <!-- AI Stock Research -->
+          <!-- Equity Research Agent (AI Stock Research Platform) -->
           <article class="card card-feature" data-card>
             <div class="card-visual agents" aria-hidden="true">
+              <div class="eq-brand"><i></i><span>EQUITY·RESEARCH</span></div>
               <div class="agent-q">Search: "TCS"</div>
               <div class="agent-row">
                 <span class="agent">Company</span><span class="agent">Financial</span><span class="agent">Technical</span><span class="agent">News</span>
@@ -265,9 +270,9 @@
               <div class="agent-out">Source-backed report<small>every figure cited · replayable snapshot</small></div>
             </div>
             <div class="card-body">
-              <p class="card-kicker">Personal · AI agents</p>
-              <h3 class="card-title">AI Stock Research Platform</h3>
-              <p>Source-backed research reports for NSE-listed companies. Company, Financial, Technical and News agents plus a bull-vs-bear debate run in parallel on the Claude or Gemini API with model fallback, and a verification step strips any uncited fact. Deterministic engines handle ratios, 20+ data-quality checks, risk metrics and walk-forward forecasts; an options module prices with Black-Scholes and binomial models across 13 strategies. Every report is a hashed, replayable snapshot.</p>
+              <p class="card-kicker">Personal · AI stock research platform</p>
+              <h3 class="card-title">Equity Research Agent</h3>
+              <p>Evidence-first, source-backed research reports for NSE and BSE listed companies. Company, Financial, Technical and News agents plus a bull-vs-bear debate run in parallel on the Claude or Gemini API with model fallback, and a verification step strips any uncited fact. Deterministic engines handle ratios, 20+ data-quality checks, risk metrics and walk-forward forecasts; an options module prices with Black-Scholes and binomial models across 13 strategies. Every report is a hashed, replayable snapshot.</p>
               <ul class="chips"><li>Python</li><li>FastAPI</li><li>Next.js</li><li>React</li><li>TypeScript</li><li>Claude &amp; Gemini APIs</li><li>SQLAlchemy</li><li>pytest</li></ul>
               <div class="card-links"><a href="https://github.com/ateetgogineni/Stock_Market" target="_blank" rel="noopener" class="link"><svg><use href="#i-github"/></svg>Source</a></div>
             </div>
@@ -281,11 +286,27 @@
               <h3 class="card-title">Land Lawyers</h3>
               <p>Land verification and legal services platform for Telangana and Andhra Pradesh: a public website plus a separate team dashboard, both on one Node.js and PostgreSQL backend, packaged with Docker for the client to host.</p>
               <ul class="chips"><li>Node.js</li><li>PostgreSQL</li><li>Docker</li><li>HTML · CSS · JS</li></ul>
+              <div class="card-links"><a href="https://landlawyers.in/" target="_blank" rel="noopener" class="link link-gold"><svg><use href="#i-arrow"/></svg>Visit site</a></div>
+            </div>
+          </article>
+
+          <!-- Vedic Pooja Guru -->
+          <article class="card card-half" data-card>
+            <div class="card-shot card-screens" aria-hidden="true">
+              <img src="assets/img/projects/vedic-home.webp" alt="" width="420" height="1452" loading="lazy" />
+              <img src="assets/img/projects/vedic-ganesh.webp" alt="" width="420" height="1310" loading="lazy" />
+              <img src="assets/img/projects/vedic-deepa.webp" alt="" width="420" height="952" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <p class="card-kicker">Personal · Mobile app</p>
+              <h3 class="card-title">Vedic Pooja Guru</h3>
+              <p>AI-powered pooja assistant that guides users step by step through Hindu rituals, works out item quantities from the headcount and answers questions by voice, personalised by region and language. Includes a pooja library with search, daily rituals, panchangam, an astrology profile and AI chat.</p>
+              <ul class="chips"><li>React Native</li><li>TypeScript</li><li>Supabase</li><li>Text-to-speech</li><li>AI chat</li></ul>
             </div>
           </article>
 
           <!-- WorthIt -->
-          <article class="card" data-card>
+          <article class="card card-half" data-card>
             <div class="card-shot"><img src="assets/img/projects/worthit.webp" alt="WorthIt dashboard: What do you want to achieve?" width="900" height="563" loading="lazy" /></div>
             <div class="card-body">
               <p class="card-kicker">Personal · PWA</p>
@@ -296,6 +317,18 @@
                 <a href="https://ateetgogineni.github.io/worthit-dashboard/" target="_blank" rel="noopener" class="link link-gold"><svg><use href="#i-arrow"/></svg>Live</a>
                 <a href="https://github.com/ateetgogineni/worthit-dashboard" target="_blank" rel="noopener" class="link"><svg><use href="#i-github"/></svg>Source</a>
               </div>
+            </div>
+          </article>
+
+          <!-- Games row: Glowpath, Ramayanam, Glowmoth -->
+          <!-- Glowpath -->
+          <article class="card" data-card>
+            <div class="card-shot"><img src="assets/img/projects/glowpath.webp" alt="Glowpath title screen: Bend the light. Wake the crystals." width="900" height="563" loading="lazy" /></div>
+            <div class="card-body">
+              <p class="card-kicker">Personal · Puzzle game</p>
+              <h3 class="card-title">Glowpath</h3>
+              <p>A calm light-bending logic puzzle with a new challenge every day. A level generator keeps only solvable, quality-checked puzzles and a verifier proves every level can be solved. WebAudio sound; installs as an offline PWA and ships as an Android app.</p>
+              <ul class="chips"><li>JavaScript</li><li>Procedural generation</li><li>WebAudio</li><li>PWA</li><li>Android</li></ul>
             </div>
           </article>
 

@@ -238,7 +238,10 @@ em { font-style: normal; }
   color: var(--gold);
   background: linear-gradient(160deg, rgba(210, 180, 140, 0.14), rgba(210, 180, 140, 0.02));
 }
-.nav-name { font-family: var(--font-display); font-size: 17px; font-weight: 500; letter-spacing: 0.06em; }
+.nav-name { font-family: var(--font-display); font-size: 17px; font-weight: 500; letter-spacing: 0.06em; white-space: nowrap; }
+@media (max-width: 1180px) { .nav-name { font-size: 15px; letter-spacing: 0.04em; } }
+@media (max-width: 640px) { .nav-name { font-size: 13px; letter-spacing: 0.02em; } }
+@media (max-width: 360px) { .nav-name { font-size: 11.5px; } }
 .nav-links { display: flex; gap: 30px; }
 .nav-links a {
   position: relative;
@@ -351,22 +354,34 @@ em { font-style: normal; }
 .hero-sub { margin: 18px auto 0; max-width: 560px; font-size: 15px; color: var(--subtle); }
 .hero-cta { margin-top: 34px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+/* Five-phone arc around one centre phone. Each phone sets --x (offset from
+   centre, in phone widths), --r (tilt), --s (size), --t (drop), --z (depth)
+   and --b (brightness). */
 .hero-phones {
+  --pw: clamp(160px, 16.5vw, 246px);
   position: relative;
   z-index: 1;
   margin-top: clamp(48px, 8vh, 90px);
-  width: min(100%, 860px);
-  height: clamp(420px, 56vw, 640px);
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  height: calc(var(--pw) * 2.07 + 60px);
 }
-.hero-phone { position: absolute; top: 0; will-change: transform; }
-.hp-center { z-index: 3; left: 50%; margin-left: calc(var(--pw) / -2); --pw: clamp(220px, 27vw, 300px); }
-.hp-left, .hp-right { z-index: 2; top: 9%; --pw: clamp(180px, 22vw, 250px); }
-.hp-left { left: 50%; margin-left: calc(var(--pw) * -1.32); transform: rotate(-7deg); }
-.hp-right { left: 50%; margin-left: calc(var(--pw) * 0.32); transform: rotate(7deg); }
-.hero-phone .phone { width: var(--pw); }
-.hp-left .phone, .hp-right .phone { filter: brightness(0.62); }
+.hero-phone {
+  position: absolute;
+  top: var(--t, 0);
+  left: 50%;
+  width: var(--pw);
+  margin-left: calc(var(--pw) * (var(--x, 0) - 0.5));
+  z-index: var(--z, 1);
+  transform: rotate(var(--r, 0deg)) scale(var(--s, 1));
+  transform-origin: 50% 85%;
+  will-change: transform;
+}
+.hero-phone .phone { width: 100%; filter: brightness(var(--b, 1)); }
+.hp-1 { --x: -1.74; --r: -12deg; --s: 0.78; --t: 13%; --z: 1; --b: 0.74; }
+.hp-2 { --x: -0.92; --r: -6deg;  --s: 0.9;  --t: 5%;  --z: 2; --b: 0.92; }
+.hp-3 { --x: 0;     --r: 0deg;   --s: 1.04; --t: 0;   --z: 3; }
+.hp-4 { --x: 0.92;  --r: 6deg;   --s: 0.9;  --t: 5%;  --z: 2; --b: 0.92; }
+.hp-5 { --x: 1.74;  --r: 12deg;  --s: 0.78; --t: 13%; --z: 1; --b: 0.74; }
 
 .scroll-cue {
   position: absolute; left: 50%; bottom: 26px; z-index: 4;
@@ -610,8 +625,40 @@ em { font-style: normal; }
 .card:hover .card-shot img { transform: scale(1.04); }
 .card-shot-contain { background: radial-gradient(circle at 50% 60%, #1b1a2a, #08080c); }
 .card-shot-contain img { object-fit: contain; padding: 12px; }
+.card-half { grid-column: span 6; }
 
-/* Agent diagram (AI Stock Research card) */
+/* Three app screens side by side (Vedic Vidhi) */
+.card-screens {
+  display: flex; justify-content: center; align-items: flex-start; gap: 14px;
+  padding: 24px 24px 0;
+  background:
+    radial-gradient(80% 90% at 50% 100%, rgba(233, 134, 46, 0.22), transparent 70%),
+    #0d0a07;
+}
+.card-screens img {
+  width: 27%; height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover; object-position: top;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 40px -24px #000;
+}
+.card-screens img:nth-child(2) { width: 31%; margin-top: -8px; }
+
+/* Agent diagram (Equity Research card) */
+.eq-brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.02em;
+}
+.eq-brand i {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #5ec8db;
+  box-shadow: 0 0 6px #5ec8db, 0 0 12px rgba(169, 138, 230, 0.8);
+}
+.eq-brand span {
+  background: linear-gradient(90deg, #5ec8db, #a98ae6);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 .agents {
   display: grid; justify-items: center; gap: 16px;
   padding: 34px 24px 30px;
@@ -859,6 +906,7 @@ em { font-style: normal; }
 
 @media (max-width: 1080px) {
   .nav-links { gap: 22px; }
+  .nav-cta { display: none; }
   .card-feature, .card-tall { grid-column: span 12; }
   .card { grid-column: span 6; }
   .card-compact { grid-column: span 6; }
@@ -893,14 +941,13 @@ em { font-style: normal; }
   .hero-eyebrow { display: block; font-size: 10.5px; letter-spacing: 0.16em; line-height: 1.9; }
   .hero-eyebrow .status-dot { display: inline-block; vertical-align: 1px; margin-right: 8px; width: 7px; height: 7px; }
   .hero-cta .btn { flex: 1 1 100%; }
-  .hero-phones { height: 118vw; max-height: 520px; margin-top: 44px; }
-  .hp-center { --pw: 52vw; }
-  .hp-left, .hp-right { --pw: 40vw; top: 12%; }
-  .hp-left { margin-left: calc(var(--pw) * -1.12); }
-  .hp-right { margin-left: calc(var(--pw) * 0.12); }
+  .hero-phones { --pw: 46vw; margin-top: 44px; }
+  .hp-1, .hp-5 { display: none; }
+  .hp-2 { --x: -0.95; }
+  .hp-4 { --x: 0.95; }
   .scroll-cue { display: none; }
 
-  .card, .card-compact, .card-feature, .card-tall { grid-column: span 12; }
+  .card, .card-compact, .card-feature, .card-tall, .card-half { grid-column: span 12; }
   .card-body { padding: 22px; }
   .earlier-grid, .skills, .edu { grid-template-columns: 1fr; }
   .game-facts { gap: 26px; }

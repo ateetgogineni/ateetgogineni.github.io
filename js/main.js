@@ -88,8 +88,10 @@
     heroSeq.forEach(function (el, i) {
       el.style.setProperty('--d', (0.15 + i * 0.12).toFixed(2) + 's');
     });
-    $$('.hero-phone').forEach(function (el, i) {
-      el.style.setProperty('--d', (0.55 + [1, 0, 2][i] * 0.14).toFixed(2) + 's');
+    // Phones rise from the centre outwards (data-ring: 0 = front pair, 2 = outer edges)
+    $$('.hero-phone').forEach(function (el) {
+      var ring = parseInt(el.getAttribute('data-ring'), 10) || 0;
+      el.style.setProperty('--d', (0.55 + ring * 0.14).toFixed(2) + 's');
     });
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -182,18 +184,32 @@
   // every later trigger accounts for the scroll space its pin adds.
   var mm = gsap.matchMedia();
 
-  // Hero: copy recedes, phones rise and fan out
+  // Each phone's place in the arc comes from its CSS custom properties.
+  var phoneVar = function (el, name, fallback) {
+    var v = parseFloat(getComputedStyle(el).getPropertyValue(name));
+    return isNaN(v) ? fallback : v;
+  };
+
+  // Hero: copy recedes, the six phones rise and fan out from the centre
   mm.add('(min-width: 901px)', function () {
     var tl = gsap.timeline({
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=85%', scrub: 0.8, pin: true, anticipatePin: 1 }
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=85%', scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true }
     });
     tl.to('.hero-copy', { yPercent: -18, opacity: 0, scale: 0.94, ease: 'none', duration: 0.5 }, 0)
-      .to('.hero-phones', { y: function () { return -window.innerHeight * 0.42; }, ease: 'none', duration: 1 }, 0)
-      .to('.hp-center', { scale: 1.12, ease: 'none', duration: 1 }, 0)
-      .to('.hp-left', { xPercent: -42, rotation: -13, y: 30, ease: 'none', duration: 1 }, 0)
-      .to('.hp-right', { xPercent: 42, rotation: 13, y: 30, ease: 'none', duration: 1 }, 0)
+      .to('.hero-phones', { y: function () { return -window.innerHeight * 0.5; }, ease: 'none', duration: 1 }, 0)
       .to('.hero-glow', { scale: 1.25, ease: 'none', duration: 1 }, 0)
       .to('.scroll-cue', { opacity: 0, ease: 'none', duration: 0.15 }, 0);
+    $$('.hero-phone').forEach(function (el) {
+      var x = phoneVar(el, '--x', 0);
+      var front = Math.abs(x) < 0.5;
+      tl.to(el, {
+        x: function () { return x * el.offsetWidth * 0.15; },
+        rotation: '+=' + (x * 1.6).toFixed(2),
+        scale: phoneVar(el, '--s', 1) * (front ? 1.08 : 1),
+        y: front ? -12 : Math.abs(x) * 10,
+        ease: 'none', duration: 1
+      }, 0);
+    });
   });
 
   mm.add('(max-width: 900px)', function () {
@@ -201,8 +217,15 @@
       yPercent: -12, opacity: 0.2, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true }
     });
-    gsap.to('.hp-left', { xPercent: -18, rotation: -11, ease: 'none', scrollTrigger: { trigger: '.hero-phones', start: 'top 85%', end: 'bottom 40%', scrub: true } });
-    gsap.to('.hp-right', { xPercent: 18, rotation: 11, ease: 'none', scrollTrigger: { trigger: '.hero-phones', start: 'top 85%', end: 'bottom 40%', scrub: true } });
+    $$('.hero-phone').forEach(function (el) {
+      var x = phoneVar(el, '--x', 0);
+      gsap.to(el, {
+        x: function () { return x * el.offsetWidth * 0.12; },
+        rotation: '+=' + (x * 2).toFixed(2),
+        ease: 'none',
+        scrollTrigger: { trigger: '.hero-phones', start: 'top 85%', end: 'bottom 40%', scrub: true }
+      });
+    });
   });
 
   // Split the statement into words, keeping <em> highlights
