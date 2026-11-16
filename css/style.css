@@ -865,7 +865,7 @@ em { font-style: normal; }
 /* ---------- Footer ---------- */
 
 .footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 13px; color: var(--muted); }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.footer-inner { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
 
 /* ==========================================================================
    Animation start states (only while JS can reveal them)
