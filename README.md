@@ -1,36 +1,39 @@
-# 🌐 Portfolio Website
+# Venkata Ateet Gogineni · Portfolio
 
-This is my personal portfolio website, built to showcase my projects, skills, and experience.
+Personal portfolio: **https://ateetgogineni.github.io**
 
-## 🚀 Live Demo
-🔗 https://your-username.github.io/your-repo-name
+Black and gold, set in Cinzel and Montserrat, with scroll-driven animation: the hero phones fan out as you scroll, the statement lights up word by word, a sticky phone switches between the shipped games, and screenshot rows drift across the gallery.
 
----
+## Stack
 
-## 📌 About
-This portfolio highlights my work and provides an overview of my technical skills, projects, and contact information.
+- Plain HTML, CSS and JavaScript. No build step.
+- [GSAP 3 + ScrollTrigger](https://gsap.com/) (cdnjs) for the scroll-scrubbed scenes.
+- Reveal-on-scroll uses `IntersectionObserver` and CSS, so the page still works if GSAP fails to load.
+- Respects `prefers-reduced-motion`: all content shows without animation.
 
----
+## Structure
 
-## 🛠️ Tech Stack
-- HTML
-- CSS
-- JavaScript
+```
+index.html            all content (edit text here)
+css/style.css         theme tokens at the top (:root)
+js/main.js            nav, reveals, games showcase, GSAP scenes
+assets/img/games/     store screenshots (WebP, 420px wide)
+assets/img/icons/     app icons
+assets/img/projects/  project screenshots
+assets/og-image.jpg   link-preview image (1200x630)
+```
 
----
+## Updating
 
-## 📂 Features
-- Responsive design
-- Projects showcase
-- About section
-- Contact section
+- **Add a shipped game:** copy an `<article class="game">` block in `index.html`, add its four screenshots to the `#stageScreen` list with the next `data-g` number, and change the `04` counter.
+- **Screenshots:** convert to WebP at 420px wide, e.g. `cwebp -q 76 -resize 420 0 in.png -o out.webp`.
 
----
-
-## ⚙️ Getting Started
-
-To run this project locally:
+## Run locally
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000.
+
+GitHub Pages serves the `develop` branch.
