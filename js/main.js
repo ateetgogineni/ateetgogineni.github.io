@@ -1,7 +1,7 @@
 /* ==========================================================================
    Portfolio interactions
    - Reveal-on-scroll: IntersectionObserver + CSS classes (works without GSAP)
-   - Scroll-scrubbed scenes: GSAP ScrollTrigger (hero, statement, gallery…)
+   - Scroll-scrubbed scenes: GSAP ScrollTrigger (hero, statement, timeline…)
    ========================================================================== */
 (function () {
   'use strict';
@@ -171,70 +171,31 @@
   }
 
   /* ---------- Shipped games showcase ---------- */
+  // Desktop: the sticky phone swaps to the game whose panel is mid-screen.
+  // Each game has one image: its first store screenshot.
   var showcase = $('.showcase');
   var games = $$('.game');
   var stageImgs = $$('#stageScreen img');
   var stageNum = $('#stageNum');
-  var activeGame = 0;
-  var activeShot = 0;
-  var cycleTimer = null;
-  var showcaseVisible = false;
-
-  function showShot(g, i) {
-    var shots = stageImgs.filter(function (img) { return +img.dataset.g === g; });
-    if (!shots.length) return;
-    i = ((i % shots.length) + shots.length) % shots.length;
-    activeShot = i;
-    stageImgs.forEach(function (img) { img.classList.toggle('on', +img.dataset.g === g && +img.dataset.i === i); });
-    $$('.thumb', games[g]).forEach(function (t) { t.classList.toggle('is-on', +t.dataset.i === i); });
-  }
-
-  function restartCycle() {
-    clearInterval(cycleTimer);
-    if (reduceMotion || !desktopMQ.matches) return;
-    cycleTimer = setInterval(function () {
-      if (!showcaseVisible || document.hidden) return;
-      showShot(activeGame, activeShot + 1);
-    }, 2600);
-  }
+  var activeGame = -1;
 
   function setGame(g) {
-    if (g === activeGame && stageImgs.some(function (img) { return img.classList.contains('on') && +img.dataset.g === g; })) return;
+    if (g === activeGame || g < 0) return;
     activeGame = g;
     games.forEach(function (el, i) { el.classList.toggle('is-active', i === g); });
+    stageImgs.forEach(function (img) { img.classList.toggle('on', +img.dataset.g === g); });
     var accent = getComputedStyle(games[g]).getPropertyValue('--accent').trim();
     if (accent) showcase.style.setProperty('--accent', accent);
     if (stageNum) stageNum.textContent = ('0' + (g + 1)).slice(-2);
-    showShot(g, 0);
-    restartCycle();
   }
 
-  if (showcase && games.length) {
-    games.forEach(function (game, g) {
-      $$('.thumb', game).forEach(function (t) {
-        t.addEventListener('click', function () {
-          if (!desktopMQ.matches) return;
-          if (g !== activeGame) setGame(g);
-          showShot(g, +t.dataset.i);
-          restartCycle();
-        });
+  if (showcase && games.length && 'IntersectionObserver' in window) {
+    var gameIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) setGame(games.indexOf(e.target));
       });
-    });
-
-    if ('IntersectionObserver' in window) {
-      var gameIO = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) setGame(games.indexOf(e.target));
-        });
-      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-      games.forEach(function (g) { gameIO.observe(g); });
-
-      new IntersectionObserver(function (entries) {
-        showcaseVisible = entries[0].isIntersecting;
-      }).observe(showcase);
-    }
-    restartCycle();
-    desktopMQ.addEventListener('change', restartCycle);
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    games.forEach(function (g) { gameIO.observe(g); });
   }
 
   /* ==========================================================================
@@ -315,15 +276,6 @@
       scrollTrigger: { trigger: '.showcase', start: 'top bottom', end: 'top top', scrub: 0.6 }
     });
   });
-
-  // Gallery rows drift in opposite directions
-  var rowA = $('.g-row-a');
-  var rowB = $('.g-row-b');
-  if (rowA && rowB) {
-    var galleryST = { trigger: '.gallery-rows', start: 'top bottom', end: 'bottom top', scrub: 0.5 };
-    gsap.fromTo(rowA, { x: 0, xPercent: 0 }, { xPercent: -24, ease: 'none', scrollTrigger: galleryST });
-    gsap.fromTo(rowB, { x: 0, xPercent: -24 }, { xPercent: 0, ease: 'none', scrollTrigger: Object.assign({}, galleryST) });
-  }
 
   // Timeline line draws as you read
   gsap.to('.timeline-line span', {
