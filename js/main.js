@@ -170,34 +170,6 @@
     });
   }
 
-  /* ---------- Shipped games showcase ---------- */
-  // Desktop: the sticky phone swaps to the game whose panel is mid-screen.
-  // Each game has one image: its first store screenshot.
-  var showcase = $('.showcase');
-  var games = $$('.game');
-  var stageImgs = $$('#stageScreen img');
-  var stageNum = $('#stageNum');
-  var activeGame = -1;
-
-  function setGame(g) {
-    if (g === activeGame || g < 0) return;
-    activeGame = g;
-    games.forEach(function (el, i) { el.classList.toggle('is-active', i === g); });
-    stageImgs.forEach(function (img) { img.classList.toggle('on', +img.dataset.g === g); });
-    var accent = getComputedStyle(games[g]).getPropertyValue('--accent').trim();
-    if (accent) showcase.style.setProperty('--accent', accent);
-    if (stageNum) stageNum.textContent = ('0' + (g + 1)).slice(-2);
-  }
-
-  if (showcase && games.length && 'IntersectionObserver' in window) {
-    var gameIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) setGame(games.indexOf(e.target));
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    games.forEach(function (g) { gameIO.observe(g); });
-  }
-
   /* ==========================================================================
      GSAP scroll-scrubbed scenes
      ========================================================================== */
@@ -267,14 +239,6 @@
   gsap.fromTo('.ship-word', { scale: 1.9, opacity: 0.08 }, {
     scale: 1, opacity: 1, ease: 'none',
     scrollTrigger: { trigger: '.ship-intro', start: 'top bottom', end: 'top 15%', scrub: 0.6 }
-  });
-
-  // Showcase phone eases in as the section arrives (desktop only)
-  mm.add('(min-width: 901px)', function () {
-    gsap.fromTo('.showcase-stage .phone-xl', { y: 120, rotation: -4, scale: 0.9 }, {
-      y: 0, rotation: 0, scale: 1, ease: 'none',
-      scrollTrigger: { trigger: '.showcase', start: 'top bottom', end: 'top top', scrub: 0.6 }
-    });
   });
 
   // Timeline line draws as you read

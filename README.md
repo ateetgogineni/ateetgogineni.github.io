@@ -2,7 +2,7 @@
 
 Personal portfolio: **https://ateetgogineni.github.io**
 
-Black and gold, set in Cinzel and Montserrat, with scroll-driven animation: the hero phones fan out as you scroll, the statement lights up word by word, and a sticky phone switches between the shipped games.
+Black and gold, set in Cinzel and Montserrat, with scroll-driven animation: the hero phones (personal projects) fan out as you scroll, the statement lights up word by word, and the timeline draws itself. Shipped work games are shown with app icons and store links only, no screenshots.
 
 ## Stack
 
@@ -16,17 +16,16 @@ Black and gold, set in Cinzel and Montserrat, with scroll-driven animation: the 
 ```
 index.html            all content (edit text here)
 css/style.css         theme tokens at the top (:root)
-js/main.js            nav, reveals, games showcase, GSAP scenes
-assets/img/games/     first store screenshot of each app (WebP, 420px wide)
-assets/img/icons/     app icons
-assets/img/projects/  project screenshots
+js/main.js            nav, reveals, GSAP scenes
+assets/img/icons/     app icons for the shipped games
+assets/img/projects/  personal project screenshots (hero phones + cards)
 assets/og-image.jpg   link-preview image (1200x630)
 ```
 
 ## Updating
 
-- **Add a shipped game:** copy an `<article class="game">` block in `index.html`, add its first store screenshot to the `#stageScreen` list with the next `data-g` number, and change the `04` counter.
-- **Screenshots:** convert to WebP at 420px wide, e.g. `cwebp -q 76 -resize 420 0 in.png -o out.webp`.
+- **Add a shipped game:** copy an `<article class="game">` block in `index.html` and add its icon to `assets/img/icons/`.
+- **Images:** convert to WebP, e.g. `cwebp -q 76 -resize 420 0 in.png -o out.webp`.
 
 ## Run locally
 
