@@ -438,7 +438,7 @@ em { font-style: normal; }
 .stats { padding: 0 0 clamp(80px, 14vh, 160px); }
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -902,7 +902,6 @@ em { font-style: normal; }
   .stat + .stat { border-left: 0; }
   .stat:nth-child(even) { border-left: 1px solid var(--line); }
   .stat:nth-child(n + 3) { border-top: 1px solid var(--line); }
-  .stat:last-child { grid-column: span 2; }
 
   /* Showcase becomes stacked panels with swipeable screenshots */
   .showcase { display: block; }
